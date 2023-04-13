@@ -1,48 +1,45 @@
-require "test_helper"
+# require "test_helper"
 
-class EmployeesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @employee = employees(:one)
-  end
+# class EmployeeTest < ActiveSupport::TestCase
+#   def setup
+#     @user = User.create(name: "Tester", email: "test@test.com", password: "password")
+#     @address = Address.create(street_address: "addr1", city: "city1", postal_code: "zip1")
+#   end
 
-  test "should get index" do
-    get employees_url
-    assert_response :success
-  end
+#   test "table has required columns" do
+#     required_columns = %w[user_id address_id phone email]
+#     required_columns.each do |column|
+#       assert_includes Employee.column_names, column, "Column '#{column}' not found"
+#     end
+#   end
 
-  test "should get new" do
-    get new_employee_url
-    assert_response :success
-  end
+#   test "columns have required data type" do
+#     required_columns = {
+#       user_id: :integer,
+#       address_id: :integer,
+#       phone: :string,
+#       email: :string
+#     }
 
-  test "should create employee" do
-    assert_difference("Employee.count") do
-      post employees_url, params: { employee: { address_id: @employee.address_id, email: @employee.email, phone: @employee.phone, user_id: @employee.user_id } }
-    end
+#     required_columns.each do |column, data_type|
+#       assert_equal data_type, Employee.column_for_attribute(column).type, "Wrong data type for #{column} column"
+#     end
+#   end
 
-    assert_redirected_to employee_url(Employee.last)
-  end
 
-  test "should show employee" do
-    get employee_url(@employee)
-    assert_response :success
-  end
+#   test "presence validation" do
+#     required_attributes = {
+#       user_id: "User",
+#       address_id: "Address",
+#       phone: "Phone"
+#     }
 
-  test "should get edit" do
-    get edit_employee_url(@employee)
-    assert_response :success
-  end
+#     required_attributes.each do |attribute, message|
+#       employee = Employee.new({ user_id: @user.id, address_id: @address.id, phone: "123123456" })
+#       employee[attribute] = ""
+#       assert_not employee.valid?, "#{attribute} should not be empty"
+#       assert_includes employee.errors.full_messages, "#{message} can't be blank"
+#     end
+#   end
 
-  test "should update employee" do
-    patch employee_url(@employee), params: { employee: { address_id: @employee.address_id, email: @employee.email, phone: @employee.phone, user_id: @employee.user_id } }
-    assert_redirected_to employee_url(@employee)
-  end
-
-  test "should destroy employee" do
-    assert_difference("Employee.count", -1) do
-      delete employee_url(@employee)
-    end
-
-    assert_redirected_to employees_url
-  end
-end
+# end

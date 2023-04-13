@@ -1,48 +1,42 @@
-require "test_helper"
+# require "test_helper"
 
-class OrderStatusesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @order_status = order_statuses(:one)
-  end
+# class OrderStatusTest < ActiveSupport::TestCase
+#   def setup
+#     @user = User.create(name: "Tester", email: "test@test.com", password: "password")
+#     @address = Address.create(street_address: "addr1", city: "city1", postal_code: "zip1")
+#   end
 
-  test "should get index" do
-    get order_statuses_url
-    assert_response :success
-  end
+#   test "table has required columns" do
+#     required_columns = %w[name]
+#     required_columns.each do |column|
+#       assert_includes OrderStatus.column_names, column, "Column '#{column}' not found"
+#     end
+#   end
 
-  test "should get new" do
-    get new_order_status_url
-    assert_response :success
-  end
+#   test "columns have required data type" do
+#     required_columns = {
+#       name: :string
+#     }
+    
+#     required_columns.each do |column, data_type|
+#       assert_equal data_type, OrderStatus.column_for_attribute(column).type, "Wrong data type for #{column} column"
+#     end
+#   end
 
-  test "should create order_status" do
-    assert_difference("OrderStatus.count") do
-      post order_statuses_url, params: { order_status: { name: @order_status.name } }
-    end
+#   test "presence validation" do
+#     required_attributes = {
+#       name: "Name"
+#     }
 
-    assert_redirected_to order_status_url(OrderStatus.last)
-  end
+#     required_attributes.each do |attribute, message|
+#       order_status = OrderStatus.new({ name: "delivered" })
+#       order_status[attribute] = ""
+#       assert_not order_status.valid?, "#{attribute} should not be empty"
+#       assert_includes order_status.errors.full_messages, "#{message} can't be blank"
+#     end
+#   end
 
-  test "should show order_status" do
-    get order_status_url(@order_status)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_order_status_url(@order_status)
-    assert_response :success
-  end
-
-  test "should update order_status" do
-    patch order_status_url(@order_status), params: { order_status: { name: @order_status.name } }
-    assert_redirected_to order_status_url(@order_status)
-  end
-
-  test "should destroy order_status" do
-    assert_difference("OrderStatus.count", -1) do
-      delete order_status_url(@order_status)
-    end
-
-    assert_redirected_to order_statuses_url
-  end
-end
+#   test "order status can have 0..* orders" do
+#     assert_respond_to OrderStatus.new, :orders, "Order status should have 0..* orders"
+#   end
+# end

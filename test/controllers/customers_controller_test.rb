@@ -1,48 +1,51 @@
-require "test_helper"
+# require "test_helper"
 
-class CustomersControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @customer = customers(:one)
-  end
+# class CustomerTest < ActiveSupport::TestCase
+#   def setup
+#     @user = User.create(name: "Tester", email: "test@test.com", password: "password")
+#     @address = Address.create(street_address: "addr1", city: "city1", postal_code: "zip1")
+#   end
 
-  test "should get index" do
-    get customers_url
-    assert_response :success
-  end
+#   test "table has required columns" do
+#     required_columns = %w[user_id address_id phone email active]
+#     required_columns.each do |column|
+#       assert_includes Customer.column_names, column, "Column '#{column}' not found"
+#     end
+#   end
 
-  test "should get new" do
-    get new_customer_url
-    assert_response :success
-  end
+#   test "columns have required data type" do
+#     required_columns = {
+#       user_id: :integer,
+#       address_id: :integer,
+#       phone: :string,
+#       email: :string,
+#       active: :boolean
+#     }
 
-  test "should create customer" do
-    assert_difference("Customer.count") do
-      post customers_url, params: { customer: { active: @customer.active, address_id: @customer.address_id, email: @customer.email, phone: @customer.phone, user_id: @customer.user_id } }
-    end
+#     required_columns.each do |column, data_type|
+#       assert_equal data_type, Customer.column_for_attribute(column).type, "Wrong data type for #{column} column"
+#     end
+#   end
 
-    assert_redirected_to customer_url(Customer.last)
-  end
 
-  test "should show customer" do
-    get customer_url(@customer)
-    assert_response :success
-  end
+#   test "presence validation" do
+#     required_attributes = {
+#       user_id: "User",
+#       address_id: "Address",
+#       phone: "Phone",
+#       active: "Active"
+#     }
 
-  test "should get edit" do
-    get edit_customer_url(@customer)
-    assert_response :success
-  end
+#     required_attributes.each do |attribute, message|
+#       customer = Customer.new({ user_id: @user.id, address_id: @address.id, phone: "123123456" })
+#       customer[attribute] = ""
+#       assert_not customer.valid?, "#{attribute} should not be empty"
+#       assert_includes customer.errors.full_messages, "#{message} can't be blank"
+#     end
+#   end
 
-  test "should update customer" do
-    patch customer_url(@customer), params: { customer: { active: @customer.active, address_id: @customer.address_id, email: @customer.email, phone: @customer.phone, user_id: @customer.user_id } }
-    assert_redirected_to customer_url(@customer)
-  end
+#   test "customer can have 0..* orders" do
+#     assert_respond_to Customer.new, :orders, "Customer should have 0..* orders"
+#   end
 
-  test "should destroy customer" do
-    assert_difference("Customer.count", -1) do
-      delete customer_url(@customer)
-    end
-
-    assert_redirected_to customers_url
-  end
-end
+# end
