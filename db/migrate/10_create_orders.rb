@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.integer :restaurant_id,       null: false
       t.integer :customer_id,         null: false
       t.integer :order_status_id,     null: false
-      t.integer :restaurant_rating,   null: false, min: 1, max: 5
+      t.integer :restaurant_rating,   min: 1, max: 5
       t.integer :courier_id     
 
       t.timestamps                    null: false

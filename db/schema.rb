@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 11) do
     t.integer "restaurant_id", null: false
     t.integer "customer_id", null: false
     t.integer "order_status_id", null: false
-    t.integer "restaurant_rating", null: false
+    t.integer "restaurant_rating"
     t.integer "courier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
