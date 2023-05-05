@@ -1,15 +1,16 @@
 class Api::ProductsController < ApplicationController
-    before_action :set_restaurant, only: [:index]
-  
-    def index
-      @products = @restaurant ? @restaurant.products : Product.all
-      render json: @products.map { |p| { id: p.id, name: p.name, cost: p.cost } }
+  def index
+    if params[:restaurant].present?
+      restaurant = Restaurant.find_by(id: params[:restaurant])
+      if restaurant.present?
+        @products = Product.where(restaurant_id: restaurant.id).to_a
+      else
+        render json: { error: "Invalid restaurant ID" }, status: 422
+        return
+      end
+    else
+      @products = Product.all.to_a
     end
-  
-    private
-  
-    def set_restaurant
-      @restaurant = Restaurant.find_by_id(params[:restaurant])
-      render json: { error: "Invalid restaurant ID" }, status: :unprocessable_entity unless @restaurant
-    end
+    render json: @products.map { |product| { id: product.id, name: product.name, cost: product.cost } }
   end
+end

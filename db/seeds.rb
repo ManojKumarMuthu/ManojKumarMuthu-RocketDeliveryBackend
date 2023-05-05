@@ -1,19 +1,16 @@
 # We create a user to be able to login into our back office and test it
 erica = User.create!(email: "erica.ger@gmail.com", name: "Erica Ger", password: "password")
 erica_address = Address.create!(street_address: "123 CodeBoxx Boulevard", city: "Montreal", postal_code: "H4G52Z")
-
 # Erica is an employee!
 Employee.create!(user_id: erica.id, address_id: erica_address.id, phone: "5141231234", email: "erica.ger@codeboxxacademy.com")
-
 # Generate users
 20.times do
   User.create!(
     email: Faker::Internet.unique.email,
     name: Faker::Name.unique.name,
-    password: "password"
+    password: "password",
   )
 end
-
 # Generate addresses
 20.times do
   Address.create!(
@@ -22,7 +19,6 @@ end
     postal_code: Faker::Address.zip_code
   )
 end
-
 # Generate employees
 2.times do
     Employee.create!(
@@ -31,7 +27,6 @@ end
       phone: Faker::PhoneNumber.phone_number
     )
   end
-
 # Generate customers
 10.times do
   Customer.create!(
@@ -41,13 +36,11 @@ end
     active: true
   )
 end
-
 # Generate courier statuses
 courier_statuses = %w[free busy full offline]
 courier_statuses.each do |status|
   CourierStatus.create!(name: status)
 end
-
 # Generate couriers
 8.times do
   Courier.create!(
@@ -58,7 +51,6 @@ end
     active: true
   )
 end
-
 # Generate restaurants
 8.times do
   Restaurant.create!(
@@ -71,13 +63,11 @@ end
     active: true
   )
 end
-
 # Generate order statuses
 order_statuses = ["pending", "in progress", "delivered"]
 order_statuses.each do |status|
   OrderStatus.create!(name: status)
 end
-
 # Generate products
 Restaurant.all.each do |restaurant|
   rand(4..6).times do
@@ -88,8 +78,6 @@ Restaurant.all.each do |restaurant|
     )
   end
 end
-
-
 # Generate orders
 100.times do
   restaurant = Restaurant.find(Restaurant.pluck(:id).sample)
@@ -103,7 +91,6 @@ end
     order_status_id: rand(1..order_statuses.size),
     restaurant_rating: [1,2,3,4,4,5,5,5,nil].sample,
   )
-
   products.each do |product|
     ProductOrder.create!(
       product_id: product.id,
